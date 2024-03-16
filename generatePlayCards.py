@@ -31,7 +31,7 @@ def add_qr_code_with_border(c, url, position, box_size):
 
 def add_text_box(c, info, position, box_size):
     x, y = position
-    text_margin = 5
+    text_margin = 2
     c.setFont("Helvetica", 10)
     artist_text = f"{info['Artist']}"
     title_text = f"{info['Title']}"
@@ -43,8 +43,8 @@ def add_text_box(c, info, position, box_size):
     year_x = x + (box_size - c.stringWidth(year_text, "Helvetica-Bold", 30)) / 2
 
     # Split the text into multiple lines if it doesn't fit in the width
-    artist_lines = textwrap.wrap(artist_text, width=int(len(artist_text) / c.stringWidth(artist_text, "Helvetica", 10) * box_size))
-    title_lines = textwrap.wrap(title_text, width=int(len(title_text) / c.stringWidth(title_text, "Helvetica", 10) * box_size))
+    artist_lines = textwrap.wrap(artist_text, width=int(len(artist_text) / c.stringWidth(artist_text, "Helvetica", 10) * (box_size - text_margin)))
+    title_lines = textwrap.wrap(title_text, width=int(len(title_text) / c.stringWidth(title_text, "Helvetica", 10) * (box_size - text_margin)))
 
     # Calculate the centered position for each line of text
     artist_y = y + box_size - 15
