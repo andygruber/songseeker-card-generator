@@ -9,7 +9,6 @@ import argparse
 import textwrap
 import os
 
-#icon_path = None;
 
 def generate_qr_code(url, file_path, icon_path):
     qr = qrcode.QRCode(
@@ -24,7 +23,6 @@ def generate_qr_code(url, file_path, icon_path):
         img = qr.make_image(fill_color="black", back_color="white")
     else:
         img = qr.make_image(image_factory=StyledPilImage, embeded_image_path=icon_path)
-        #img = qr.make_image(fill_color="black", back_color="white")
     img.save(file_path)
 
 def add_qr_code_with_border(c, url, position, box_size, icon_path):
@@ -120,6 +118,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("csv_file", help="Path to the CSV file")
     parser.add_argument("output_pdf", help="Path to the output PDF file")
-    parser.add_argument("--icon", help="path to icon to embedd to QR Code", required = False)
+    parser.add_argument("--icon", help="path to icon to embedd to QR Code, should not exeed 300x300px and using transparent background", required = False)
     args = parser.parse_args()
     main(args.csv_file, args.output_pdf, args.icon)
