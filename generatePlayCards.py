@@ -6,6 +6,7 @@ import qrcode
 import hashlib
 import argparse
 import textwrap
+import os
 
 def generate_qr_code(url, file_path):
     qr = qrcode.QRCode(
@@ -28,6 +29,7 @@ def add_qr_code_with_border(c, url, position, box_size):
     x, y = position
     c.drawImage(qr_code_path, x, y, width=box_size, height=box_size)
     c.rect(x, y, box_size, box_size)
+    os.remove(qr_code_path)
 
 def add_text_box(c, info, position, box_size):
     x, y = position
