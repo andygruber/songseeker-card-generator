@@ -31,40 +31,40 @@ def add_qr_code_with_border(c, url, position, box_size):
     c.rect(x, y, box_size, box_size)
     os.remove(qr_code_path)
 
-def add_text_box(c, info, position, box_size):
+def add_text_box(c, info, position, box_size, font="Helvetica", font_size=12, font_year = "Helvetica-Bold", font_size_year = 30):
     x, y = position
     text_margin = 2
-    c.setFont("Helvetica", 10)
+    c.setFont(font, font_size)
     artist_text = f"{info['Artist']}"
     title_text = f"{info['Title']}"
     year_text = f"{info['Year']}"
 
     # Calculate the centered position for each line of text
-    artist_x = x + (box_size - c.stringWidth(artist_text, "Helvetica", 10)) / 2
-    title_x = x + (box_size - c.stringWidth(title_text, "Helvetica", 10)) / 2
-    year_x = x + (box_size - c.stringWidth(year_text, "Helvetica-Bold", 30)) / 2
+    artist_x = x + (box_size - c.stringWidth(artist_text, font, font_size)) / 2
+    title_x = x + (box_size - c.stringWidth(title_text, font, font_size)) / 2
+    year_x = x + (box_size - c.stringWidth(year_text, font_year, font_size_year)) / 2
 
     # Split the text into multiple lines if it doesn't fit in the width
-    artist_lines = textwrap.wrap(artist_text, width=int(len(artist_text) / c.stringWidth(artist_text, "Helvetica", 10) * (box_size - text_margin)))
-    title_lines = textwrap.wrap(title_text, width=int(len(title_text) / c.stringWidth(title_text, "Helvetica", 10) * (box_size - text_margin)))
+    artist_lines = textwrap.wrap(artist_text, width=int(len(artist_text) / c.stringWidth(artist_text, font, font_size) * (box_size - text_margin)))
+    title_lines = textwrap.wrap(title_text, width=int(len(title_text) / c.stringWidth(title_text, font, font_size) * (box_size - text_margin)))
 
     # Calculate the centered position for each line of text
-    artist_y = y + box_size - 15
-    title_y = y + (len(title_lines) * 12)
-    year_y = y + box_size / 2 - 15 / 2
+    artist_y = y + box_size - (text_margin + font_size)
+    title_y = y + len(title_lines) * (text_margin + font_size) - ((font_size + text_margin) / 2)
+    year_y = y + box_size / 2 - (font_size_year /2) / 2
 
     # Draw each line of text
     for line in artist_lines:
-        artist_x = x + (box_size - c.stringWidth(line, "Helvetica", 10)) / 2
+        artist_x = x + (box_size - c.stringWidth(line, font, font_size)) / 2
         c.drawString(artist_x, artist_y, line)
-        artist_y -= 12
+        artist_y -= text_margin + font_size
 
     for line in title_lines:
-        title_x = x + (box_size - c.stringWidth(line, "Helvetica", 10)) / 2
+        title_x = x + (box_size - c.stringWidth(line, font, font_size)) / 2
         c.drawString(title_x, title_y, line)
-        title_y -= 12
+        title_y -= text_margin + font_size
 
-    c.setFont("Helvetica-Bold", 30)
+    c.setFont(font_year, font_size_year)
     c.drawString(year_x, year_y, year_text)
 
     c.rect(x, y, box_size, box_size)
