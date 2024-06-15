@@ -36,38 +36,43 @@ def add_qr_code_with_border(c, url, position, box_size, icon_path):
     c.rect(x, y, box_size, box_size)
     os.remove(qr_code_path)
 
-def add_text_box(c, info, position, box_size, font="Helvetica", font_size=12, font_year = "Helvetica-Bold", font_size_year = 30):
+def add_text_box(c, info, position, box_size,
+                 font_artist="Helvetica-Bold", font_size_artist=14,
+                 font_title="Helvetica", font_size_title=14,
+                 font_year = "Helvetica-Bold", font_size_year = 50):
     x, y = position
-    text_margin = 2
-    c.setFont(font, font_size)
+    text_margin = 5
+    text_indent = 8
     artist_text = f"{info['Artist']}"
     title_text = f"{info['Title']}"
     year_text = f"{info['Year']}"
 
     # Calculate the centered position for each line of text
-    artist_x = x + (box_size - c.stringWidth(artist_text, font, font_size)) / 2
-    title_x = x + (box_size - c.stringWidth(title_text, font, font_size)) / 2
+    artist_x = x + (box_size - c.stringWidth(artist_text, font_artist, font_size_artist)) / 2
+    title_x = x + (box_size - c.stringWidth(title_text, font_title, font_size_title)) / 2
     year_x = x + (box_size - c.stringWidth(year_text, font_year, font_size_year)) / 2
 
     # Split the text into multiple lines if it doesn't fit in the width
-    artist_lines = textwrap.wrap(artist_text, width=int(len(artist_text) / c.stringWidth(artist_text, font, font_size) * (box_size - text_margin)))
-    title_lines = textwrap.wrap(title_text, width=int(len(title_text) / c.stringWidth(title_text, font, font_size) * (box_size - text_margin)))
+    artist_lines = textwrap.wrap(artist_text, width=int(len(artist_text) / c.stringWidth(artist_text, font_artist, font_size_artist) * (box_size - text_indent*2)))
+    title_lines = textwrap.wrap(title_text, width=int(len(title_text) / c.stringWidth(title_text, font_title, font_size_title) * (box_size - text_indent*2)))
 
     # Calculate the centered position for each line of text
-    artist_y = y + box_size - (text_margin + font_size)
-    title_y = y + len(title_lines) * (text_margin + font_size) - ((font_size + text_margin) / 2)
+    artist_y = y + box_size - (text_indent + font_size_artist)
+    title_y = y + (len(title_lines) - 1) * (text_margin + font_size_title) + font_size_title / 2 + text_indent
     year_y = y + box_size / 2 - (font_size_year /2) / 2
 
     # Draw each line of text
     for line in artist_lines:
-        artist_x = x + (box_size - c.stringWidth(line, font, font_size)) / 2
+        artist_x = x + (box_size - c.stringWidth(line, font_artist, font_size_artist)) / 2
+        c.setFont(font_artist, font_size_artist)
         c.drawString(artist_x, artist_y, line)
-        artist_y -= text_margin + font_size
+        artist_y -= text_margin + font_size_artist
 
     for line in title_lines:
-        title_x = x + (box_size - c.stringWidth(line, font, font_size)) / 2
+        title_x = x + (box_size - c.stringWidth(line, font_title, font_size_title)) / 2
+        c.setFont(font_title, font_size_title)
         c.drawString(title_x, title_y, line)
-        title_y -= text_margin + font_size
+        title_y -= text_margin + font_size_title
 
     c.setFont(font_year, font_size_year)
     c.drawString(year_x, year_y, year_text)
@@ -80,7 +85,8 @@ def main(csv_file_path, output_pdf_path, icon_path=None):
 
     c = canvas.Canvas(output_pdf_path, pagesize=A4)
     page_width, page_height = A4
-    box_size = 4.6 * cm
+    # box_size = 4.6 * cm
+    box_size = 6.5 * cm
     boxes_per_row = int(page_width // box_size)
     boxes_per_column = int(page_height // box_size)
     boxes_per_page = boxes_per_row * boxes_per_column
