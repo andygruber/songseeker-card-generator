@@ -25,7 +25,7 @@ def generate_qr_code(url, file_path, icon_path):
         img = qr.make_image(image_factory=StyledPilImage, embeded_image_path=icon_path)
     img.save(file_path)
 
-def add_qr_code_with_border(c, url, position, box_size, icon_path):
+def add_qr_code_with_border(c, url, position, box_size, noborder, icon_path):
     hash_object = hashlib.sha256(url.encode())
     hex_dig = hash_object.hexdigest()
 
@@ -33,10 +33,11 @@ def add_qr_code_with_border(c, url, position, box_size, icon_path):
     generate_qr_code(url, qr_code_path, icon_path)
     x, y = position
     c.drawImage(qr_code_path, x, y, width=box_size, height=box_size)
-    c.rect(x, y, box_size, box_size)
+    if noborder == False :
+        c.rect(x, y, box_size, box_size)
     os.remove(qr_code_path)
 
-def add_text_box(c, info, position, box_size, font="Helvetica", font_size=12, font_year = "Helvetica-Bold", font_size_year = 30):
+def add_text_box(c, info, position, box_size, noborder=False, font="Helvetica", font_size=12, font_year = "Helvetica-Bold", font_size_year = 30):
     x, y = position
     text_margin = 2
     c.setFont(font, font_size)
@@ -72,9 +73,10 @@ def add_text_box(c, info, position, box_size, font="Helvetica", font_size=12, fo
     c.setFont(font_year, font_size_year)
     c.drawString(year_x, year_y, year_text)
 
-    c.rect(x, y, box_size, box_size)
+    if noborder == False:
+        c.rect(x, y, box_size, box_size)
 
-def main(csv_file_path, output_pdf_path, icon_path=None):
+def main(csv_file_path, output_pdf_path, noborder=False, icon_path=None):
     data = pd.read_csv(csv_file_path)
     data = data.applymap(lambda x: x.strip() if isinstance(x, str) else x) # Remove leading and trailing whitespaces
 
@@ -96,7 +98,7 @@ def main(csv_file_path, output_pdf_path, icon_path=None):
             row_index = position_index // boxes_per_row
             x = hpageindent + (column_index * box_size)
             y = page_height - vpageindent - (row_index + 1) * box_size
-            add_qr_code_with_border(c, row['URL'], (x, y), box_size, icon_path)
+            add_qr_code_with_border(c, row['URL'], (x, y), box_size, noborder, icon_path)
 
         c.showPage()
 
@@ -108,7 +110,7 @@ def main(csv_file_path, output_pdf_path, icon_path=None):
             row_index = position_index // boxes_per_row
             x = hpageindent + (column_index * box_size)
             y = page_height - vpageindent - (row_index + 1) * box_size
-            add_text_box(c, row, (x, y), box_size)
+            add_text_box(c, row, (x, y), box_size, noborder)
 
         c.showPage()
 
@@ -119,5 +121,6 @@ if __name__ == "__main__":
     parser.add_argument("csv_file", help="Path to the CSV file")
     parser.add_argument("output_pdf", help="Path to the output PDF file")
     parser.add_argument("--icon", help="path to icon to embedd to QR Code, should not exeed 300x300px and using transparent background", required = False)
+    parser.add_argument('--noborder', action='store_true')
     args = parser.parse_args()
-    main(args.csv_file, args.output_pdf, args.icon)
+    main(args.csv_file, args.output_pdf, args.noborder, args.icon)
