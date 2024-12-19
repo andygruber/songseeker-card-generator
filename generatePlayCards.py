@@ -48,7 +48,6 @@ def add_text_box(c, info, position, box_size,
 
     # Check if 'backcol' is in info and set the fill color
     if 'backcol' in info and not pd.isna(info['backcol']):
-        print (info['backcol'])
         r, g, b = tuple(float(x) for x in info['backcol'].split(','))
         c.setFillColorRGB(r, g, b)
         c.rect(x, y, box_size, box_size, fill=1)
