@@ -8,9 +8,11 @@ import hashlib
 import argparse
 import textwrap
 import os
+import requests
+from io import BytesIO
 
 
-def generate_qr_code(url, file_path, icon_path):
+def generate_qr_code(url, file_path, icon_path, icon_image_cache={}):
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_Q,
@@ -22,7 +24,14 @@ def generate_qr_code(url, file_path, icon_path):
     if icon_path is None:
         img = qr.make_image(fill_color="black", back_color="white")
     else:
-        img = qr.make_image(image_factory=StyledPilImage, embeded_image_path=icon_path)
+        if icon_path.startswith('http'):
+            if icon_path not in icon_image_cache:
+                response = requests.get(icon_path)
+                icon_image_cache[icon_path] = BytesIO(response.content)
+            icon_image = icon_image_cache[icon_path]
+            img = qr.make_image(image_factory=StyledPilImage, embeded_image_path=icon_image)
+        else:
+            img = qr.make_image(image_factory=StyledPilImage, embeded_image_path=icon_path)
     img.save(file_path)
 
 def add_qr_code_with_border(c, url, position, box_size, icon_path):
