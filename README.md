@@ -39,6 +39,15 @@ python card_generator.py <input_csv_path> <output_pdf_path>
 python card_generator.py data/example-youtube-songs.csv example.pdf
 ```
 
+You can also add an icon to the card by using the `--icon` flag:
+```bash
+# Add icon from a url
+python card_generator.py data/example-youtube-songs.csv example.pdf --icon https://github.com/andygruber/songseeker/blob/main/icons/icon-96x96.png?raw=true
+# Add icon from a local file
+python card_generator.py data/example-youtube-songs.csv example.pdf --icon ../songseeker/icons/icon-96x96.png
+```
+
+
 ## CSV Input Format
 
 The input CSV file should have the following format:
@@ -46,7 +55,8 @@ The input CSV file should have the following format:
 *   `Title`: The title of the song.
 *   `Artist`: The artist of the song.
 *   `Year`: The release year of the song.
-*   `URL`: The YouTube URL of the song.
+*   `URL`: The YouTube URL of the song. If the song does not start at the beginning of the video, you may also add the starting time in seconds to the end of the link, like `?t=16`.
+*   `backcol`: (optional) background color of the card
 
 Make sure your CSV file includes headers and the data is separated by commas.
 

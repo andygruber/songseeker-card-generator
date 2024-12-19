@@ -1,25 +1,26 @@
-Artist,Title,Year,URL
-Rick Astley,Never gonna give you up,1987,https://youtu.be/dQw4w9WgXcQ
-Tiffany,I Think We are Alone Now,1987,https://www.youtube.com/watch?v=w6Q3mHyzn78
-Nirvana,The Man Who Sold The World (MTV Unplugged),1991,https://www.youtube.com/watch?v=fregObNcHC8
-Kylie Minogue and Jason Donovan,Especially For You,1988,https://www.youtube.com/watch?v=yalM-2ih7RU
-ABBA,"Knowing Me, Knowing You",1977,https://www.youtube.com/watch?v=iUrzicaiRLU
-Pat Benatar,We Belong,1984,https://www.youtube.com/watch?v=qxZInIyOBXk
-Nirvana,Smells Like Teen Spirit, 1991, https://www.youtube.com/watch?v=hTWKbfoikeg
-Creedence Clearwater Revival, Have You Ever Seen The Rain, 1971, https://youtu.be/u1V8YRJnr4Q?t=16
-R.E.M., Losing My Religion, 1991, https://www.youtube.com/watch?v=xwtdhWltSIg
-Metallica, Enter Sandman, 1991, https://www.youtube.com/watch?v=CD-E-LDc384
-Bon Jovi,Livin On A Prayer, 1986, https://www.youtube.com/watch?v=lDK9QqIzhwk
-Radiohead, Creep, 1992, https://www.youtube.com/watch?v=XFkzRNyygfk
-a-ha, Take On Me, 1984, https://www.youtube.com/watch?v=djV11Xbc914
-The Bangles, Eternal Flame, 1988, https://www.youtube.com/watch?v=PSoOFn3wQV4
-The Police, Every Breath You Take, 1983, https://www.youtube.com/watch?v=OMOGaugKpzs
-The Cure, Just Like Heaven, 1987, https://www.youtube.com/watch?v=n3nPiBai66M
-Aerosmith, I Don't Want to Miss a Thing, 1998, https://www.youtube.com/watch?v=JkK8g6FMEXE
-The Cranberries, Zombie, 1994, https://www.youtube.com/watch?v=6Ejga4kJUts
-The Cranberries, Linger, 1993, https://www.youtube.com/watch?v=G6Kspj3OO0s
-The Cranberries, Ode to My Family, 1994, https://www.youtube.com/watch?v=Zz-DJr1Qs54
-The Cranberries, Dreams, 1993, https://www.youtube.com/watch?v=Yam5uK6e-bQ
-Aerosmith, Crazy, 1994, https://www.youtube.com/watch?v=NMNgbISmF4I
-Aerosmith, Amazing, 1993, https://www.youtube.com/watch?v=zSmOvYzSeaQ
-Aerosmith, Cryin', 1993, https://www.youtube.com/watch?v=qfNmyxV2Ncw
+Artist,Title,Year,URL,backcol
+Rick Astley,Never gonna give you up,1987,https://youtu.be/dQw4w9WgXcQ,"1,0.5,0.5"
+Tiffany,I Think We are Alone Now,1987,https://www.youtube.com/watch?v=w6Q3mHyzn78,"1,0.5,0.5"
+Nirvana,The Man Who Sold The World (MTV Unplugged),1991,https://www.youtube.com/watch?v=fregObNcHC8,"1,0.5,0.5"
+Kylie Minogue and Jason Donovan,Especially For You,1988,https://www.youtube.com/watch?v=yalM-2ih7RU,"0.75,0.2,0.75"
+ABBA,"Knowing Me, Knowing You",1977,https://www.youtube.com/watch?v=iUrzicaiRLU,"0.75,0.2,0.75"
+Pat Benatar,We Belong,1984,https://www.youtube.com/watch?v=qxZInIyOBXk,"0.75,0.2,0.75"
+Nirvana,Smells Like Teen Spirit, 1991, https://www.youtube.com/watch?v=hTWKbfoikeg,"0.5,1,0.5"
+Creedence Clearwater Revival, Have You Ever Seen The Rain, 1971, https://youtu.be/u1V8YRJnr4Q?t=16,"0.5,1,0.5"
+R.E.M., Losing My Religion, 1991, https://www.youtube.com/watch?v=xwtdhWltSIg,"0.5,1,0.5"
+Metallica, Enter Sandman, 1991, https://www.youtube.com/watch?v=CD-E-LDc384,"0.75,0.75,1"
+Bon Jovi,Livin On A Prayer, 1986, https://www.youtube.com/watch?v=lDK9QqIzhwk,"0.75,0.75,1"
+Radiohead, Creep, 1992, https://www.youtube.com/watch?v=XFkzRNyygfk,"0.75,0.75,1"
+a-ha, Take On Me, 1984, https://www.youtube.com/watch?v=djV11Xbc914,"0.8,0.8,0.2"
+The Bangles, Eternal Flame, 1988, https://www.youtube.com/watch?v=PSoOFn3wQV4,"0.8,0.8,0.2"
+The Police, Every Breath You Take, 1983, https://www.youtube.com/watch?v=OMOGaugKpzs,"0.8,0.8,0.2"
+The Cure, Just Like Heaven, 1987, https://www.youtube.com/watch?v=n3nPiBai66M,"1,0.5,0.5"
+Aerosmith, I Don't Want to Miss a Thing, 1998, https://www.youtube.com/watch?v=JkK8g6FMEXE,"1,0.5,0.5"
+The Cranberries, Zombie, 1994, https://www.youtube.com/watch?v=6Ejga4kJUts,"1,0.5,0.5"
+The Cranberries, Linger, 1993, https://www.youtube.com/watch?v=G6Kspj3OO0s,"0.75,0.2,0.75"
+The Cranberries, Ode to My Family, 1994, https://www.youtube.com/watch?v=Zz-DJr1Qs54,"0.75,0.2,0.75"
+The Cranberries, Dreams, 1993, https://www.youtube.com/watch?v=Yam5uK6e-bQ,"0.75,0.2,0.75"
+Aerosmith, Crazy, 1994, https://www.youtube.com/watch?v=NMNgbISmF4I,"0.5,1,0.5"
+Aerosmith, Amazing, 1993, https://www.youtube.com/watch?v=zSmOvYzSeaQ,"0.5,1,0.5"
+Aerosmith, Cryin', 1993, https://www.youtube.com/watch?v=qfNmyxV2Ncw,"0.5,1,0.5"
+Metallica, Whiskey in the Jar, 1998, https://www.youtube.com/watch?v=wsrvmNtWU4E
